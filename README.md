@@ -29,9 +29,12 @@ second click -> select note 2
 third click -> select note 1
 ...
 
-## Layout
+## keyboard
 
-    C#   5 semi   F
-         4P
-
+A..G : note from
+shift A..G : note to
+0..9 : interval (major or perfect)
+shit 0..9 : minor or diminished interval
+alt 0..9 : augmented interval    
+t T : tritone
 

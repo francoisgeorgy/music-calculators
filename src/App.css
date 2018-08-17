@@ -1,28 +1,78 @@
 .App {
-  text-align: center;
+    /*text-align: center;*/
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    /*height: 150px;*/
+    padding: 20px;
+    color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.c {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.c > div {
+    margin: 0 10px;
+}
+
+.i input {
+    display: block;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    font-size: 3rem;
+    width: 6rem;
+    outline: none;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #eee;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #eee;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #eee;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #eee;
+}
+
+/*
+.i input:focus {
+    outline: none;
+}*/
+
+.i label {
+    font-size: 0.8rem;
+}
+
+#help {
+    font-size: 0.8rem;
+}
+
+div.help {
+
+}
+
+.help span {
+    font-family: monospace;
+    font-weight: bold;
 }
