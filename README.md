@@ -29,5 +29,9 @@ second click -> select note 2
 third click -> select note 1
 ...
 
+## Layout
+
+    C#   5 semi   F
+         4P
 
 
