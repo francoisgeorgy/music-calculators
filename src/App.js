@@ -184,7 +184,9 @@ class App extends Component {
 
     handleKeyboardEvent = (event) => {
 
-        console.log(event.key, event.keyCode, event.which);
+        //TODO: tab key to select active calculator
+
+        console.log(event.key, event.keyCode, event.which, event);
         // T    84
         // #    51
 
@@ -203,7 +205,11 @@ class App extends Component {
         // }
         // 0..9 48..57
         if ((event.keyCode >= 48) && (event.keyCode <= 57)) {
-            this.setInterval(Interval.build({ num: Number.parseInt(event.key, 10), alt: 0 }));   //TODO: check if not NaN
+            let alt = 0;                                        // FIXME: see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+            if (event.shiftKey) alt++;
+            if (event.altKey) alt--;
+            console.log(`set interval ${event.key} ${alt}`);
+            this.setInterval(Interval.build({ num: Number.parseInt(event.key, 10), alt: alt }));   //TODO: check if not NaN
         }
 
         // + 43
