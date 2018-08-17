@@ -29,6 +29,14 @@ second click -> select note 2
 third click -> select note 1
 ...
 
+### TODO:
+
+- Add any number of intervals
+    - add operands and operators
+- Save last state in local storage (or cookie?)
+
+- Visualize on scale
+
 ## keyboard
 
 A..G : note from

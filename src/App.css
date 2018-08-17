@@ -27,11 +27,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 .c > div {
     margin: 0 10px;
 }
+
 
 .i input {
     display: block;
@@ -40,6 +42,21 @@
     font-size: 3rem;
     width: 6rem;
     outline: none;
+}
+
+/*
+.i input:focus {
+    outline: none;
+}*/
+
+.i label {
+    font-size: 0.8rem;
+}
+
+
+.op > div {
+    font-size: 3rem;
+    color: #333;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -53,15 +70,6 @@
 }
 :-moz-placeholder { /* Firefox 18- */
     color: #eee;
-}
-
-/*
-.i input:focus {
-    outline: none;
-}*/
-
-.i label {
-    font-size: 0.8rem;
 }
 
 #help {
