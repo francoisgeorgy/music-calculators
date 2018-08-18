@@ -13,16 +13,35 @@ class App extends Component {
         interval: ''
     };
 
+    /*  keypress vs keydown
+
+        https://developer.mozilla.org/en-US/docs/Web/Events/keypress :
+
+        The keypress event is fired when a key that produces a character value is pressed down.
+        Examples of keys that produce a character value are alphabetic, numeric, and punctuation keys.
+        Examples of keys that don't produce a character value are modifier keys such as Alt, Shift, Ctrl, or Meta.
+
+        https://stackoverflow.com/questions/3396754/onkeypress-vs-onkeyup-and-onkeydown :
+
+        To understand the difference between keydown and keypress, it is useful to distinguish between characters
+        and keys. A key is a physical button on the computer's keyboard. A character is a symbol typed by pressing
+        a button. On a US keyboard, hitting the 4 key while holding down the Shift key typically produces a "dollar sign"
+        character. This is not necessarily the case on every keyboard in the world. In theory, the keydown and keyup
+        events represent keys being pressed or released, while the keypress event represents a character being typed.
+        In practice, this is not always the way it is implemented.
+
+     */
+
     componentWillMount() {
         document.addEventListener('keydown', this.onKeyDown, false);
         // document.addEventListener('keyup', this.handleKeyboardEvent, false);
-        document.addEventListener('keypress', this.handleKeyboardEvent, false);
+        // document.addEventListener('keypress', this.handleKeyboardEvent, false);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.onKeyDown, false);
         // document.removeEventListener('keyup', this.handleKeyboardEvent, false);
-        document.removeEventListener('keypress', this.handleKeyboardEvent, false);
+        // document.removeEventListener('keypress', this.handleKeyboardEvent, false);
     }
 
     onNoteFromChange = (event) => {
@@ -207,6 +226,7 @@ class App extends Component {
     };
 
     onKeyDown = (event) => {
+
         console.log("onKeyDown", event.key, event.keyCode, event.which, event.target, event);
 
         if (event.keyCode === 27) { // ESC
@@ -229,18 +249,67 @@ class App extends Component {
             return;
         }
 
+        // TODO:
+        // T    84
+        // #    51
+        // Ctrl-DEL : clear
+        // Ctrl-S : swap notes
+
+        // a..g 65..71
+        if (!event.shiftKey && ((event.keyCode >= 65) && (event.keyCode <= 71))) {
+            this.setFromNote(event.key);
+        }
+
+        // A..G 97..103
+        if (    event.shiftKey && ((event.keyCode >= 65) && (event.keyCode <= 71))) {
+            this.setToNote(event.key);
+        }
+
+        // 0..9 48..57
+        // if ((event.keyCode >= 48) && (event.keyCode <= 57)) {
+        //     this.setSemitones(Number.parseInt(event.key, 10));   //TODO: check if not NaN
+        // }
+        // 0..9 48..57
+        if ((event.keyCode >= 48) && (event.keyCode <= 57)) {
+            let alt = 0;                                        // FIXME: see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+            if (event.shiftKey) alt++;
+            if (event.altKey) alt--;
+            console.log(`set interval ${event.key} ${alt}`);
+            this.setInterval(Interval.build({ num: Number.parseInt(event.key, 10), alt: alt }));   //TODO: check if not NaN
+        }
+
+        // +
+        if (event.key === '+') {
+            let n = Number.parseInt(this.state.semitones, 10);
+            if (Number.isNaN(n)) {
+                n = 0;
+            }
+            this.setSemitones(n + 1);
+        }
+
+        // -
+        if (event.key === '-') {
+            // console.log(`minus ${event.key}`);
+            let n = Number.parseInt(this.state.semitones, 10);
+            if (Number.isNaN(n)) {
+                n = 0;
+            }
+            this.setSemitones(n - 1);
+        }
+
     };
 
+/*
     handleKeyboardEvent = (event) => {
 
         //TODO: tab key to select active calculator
+
+        console.log("handleKeyboardEvent", event.key, event.keyCode, event.which, event);
 
         if (event.target.tagName.toLowerCase() === 'input') {
             console.log("ignore keyboard event on input tag");
             return;
         }
-
-        console.log("handleKeyboardEvent", event.key, event.keyCode, event.which, event);
 
         // TODO:
         // T    84
@@ -289,17 +358,15 @@ class App extends Component {
             this.setSemitones(n - 1);
         }
 
-        /*
-        if (e.ctrlKey && e.which === 87) {
-            this.props.toggleWebcamModal()
-        } else if (e.ctrlKey & e.which === 83) {
-            this.props.openSaveModal()
-        } else if (e.ctrlKey && e.shiftKey && e.which === 68) {
-            this.handleClear()
-        }
-        */
+        // if (e.ctrlKey && e.which === 87) {
+        //     this.props.toggleWebcamModal()
+        // } else if (e.ctrlKey & e.which === 83) {
+        //     this.props.openSaveModal()
+        // } else if (e.ctrlKey && e.shiftKey && e.which === 68) {
+        //     this.handleClear()
+        // }
     };
-
+*/
 
     render() {
         return (
