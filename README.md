@@ -22,6 +22,34 @@
     - interval (where applicable)
     - semitone (where applicable)
 
+scale:
+
+- notes in scale
+- intervals in scale
+- harmonisation
+
+harmony:
+
+- scale
+    - harmonisation
+- chord number (e.g. II) --> chord
+- chord --> chord number
+
+rhythm:
+
+- BPM
+- rhythm signatures
+
+
+Guitar calculator
+
+- tuning
+- string, fret --> note
+- note --> string, fret
+- frets --> interval
+
+Misc:
+
 Display a scale.
 Click any note in the scale
 first click -> select note 1

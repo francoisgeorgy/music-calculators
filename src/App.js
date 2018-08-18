@@ -14,18 +14,19 @@ class App extends Component {
     };
 
     componentWillMount() {
-        // document.addEventListener('keydown', this.handleKeyboardEvent, false);
+        document.addEventListener('keydown', this.onKeyDown, false);
         // document.addEventListener('keyup', this.handleKeyboardEvent, false);
         document.addEventListener('keypress', this.handleKeyboardEvent, false);
     }
 
     componentWillUnmount() {
-        // document.removeEventListener('keydown', this.handleKeyboardEvent, false);
+        document.removeEventListener('keydown', this.onKeyDown, false);
         // document.removeEventListener('keyup', this.handleKeyboardEvent, false);
         document.removeEventListener('keypress', this.handleKeyboardEvent, false);
     }
 
     onNoteFromChange = (event) => {
+        console.log("onNoteFromChange");
         this.setFromNote(event.target.value);
     };
 
@@ -115,11 +116,26 @@ class App extends Component {
 
     setFromNote = (note) => {
 
+        if (note === null) return;
+
+        if (note.trim() === '') {
+            this.setState({
+                noteFrom: ''
+            });
+        }
+
         let n = Note.name(note);
 
         if (n === null) return;
 
-        if (this.state.noteTo) {
+        //TODO: if interval or semitones not null, then re-compute noteTo
+
+        if (this.state.semitones) {
+            this.setState({
+                noteFrom: n,
+                noteTo: Distance.transpose(n, Interval.fromSemitones(this.state.semitones))
+            });
+        } else if (this.state.noteTo) {
             this.setState({
                 noteFrom: n,
                 semitones: Distance.semitones(n, this.state.noteTo),
@@ -131,6 +147,14 @@ class App extends Component {
     };
 
     setToNote = (note) => {
+
+        if (note === null) return;
+
+        if (note.trim() === '') {
+            this.setState({
+                noteTo: ''
+            });
+        }
 
         let n = Note.name(note);
 
@@ -182,13 +206,47 @@ class App extends Component {
         }
     };
 
+    onKeyDown = (event) => {
+        console.log("onKeyDown", event.key, event.keyCode, event.which, event.target, event);
+
+        if (event.keyCode === 27) { // ESC
+            event.target.blur();
+            // document.body.focus();
+
+            //TODO: if focus not on input element, place it on focus element --> toggleFocus
+            return;
+        }
+
+        if (event.target.tagName.toLowerCase() === 'input') {
+            console.log("ignore keyboard event on input tag");
+            return;
+        }
+
+        // Backspace
+        if (event.keyCode === 8 && event.ctrlKey) {
+            console.log("clear");
+            this.clear();
+            return;
+        }
+
+    };
+
     handleKeyboardEvent = (event) => {
 
         //TODO: tab key to select active calculator
 
-        console.log(event.key, event.keyCode, event.which, event);
+        if (event.target.tagName.toLowerCase() === 'input') {
+            console.log("ignore keyboard event on input tag");
+            return;
+        }
+
+        console.log("handleKeyboardEvent", event.key, event.keyCode, event.which, event);
+
+        // TODO:
         // T    84
         // #    51
+        // Ctrl-DEL : clear
+        // Ctrl-S : swap notes
 
         // A..G 97..103
         if ((event.keyCode >= 65) && (event.keyCode <= 71)) {
