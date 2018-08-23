@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Distance, Interval, Note } from "tonal";
 // import logo from './logo.svg';
 import './App.css';
+import NotePlusInterval from "./NotePlusInterval";
 // import KeyboardEventHandler from "react-keyboard-event-handler";
 
 class App extends Component {
@@ -500,6 +501,12 @@ class App extends Component {
                         <div className={"help"}><span>t T</span> : tritone</div>
                     </div>
                 </div>
+
+                <div>
+                    <h3>experimental:</h3>
+                    <NotePlusInterval/>
+                </div>
+
             </div>
         );
     }
