@@ -4,29 +4,43 @@ import './NotePlusInterval.css';
 
 class NotePlusInterval extends Component {
 
+    state = {
+        noteFrom: '',
+        noteTo: '',
+        semitones: '',
+        interval: ''
+    };
+
+    onClickNoteFrom = (note) => {
+        console.log(note);
+        this.setState({noteFrom: note});
+    };
+
+    onClickNoteTo = (note) => {
+        console.log(note);
+        this.setState({noteTo: note})
+    };
+
     render() {
+
+        let whiteKeys = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
+        let blackKeysFlats =  ['Db', 'Eb', 'Gb', 'Ab', 'Bb'];
+        let blackKeysSharps = ['C#', 'D#', 'F#', 'G#', 'A#'];
+
         return (
             <div className="NotePlusInterval">
                 <div>
                     from:
                     <div className="piano">
-                        <div className="white-key note-c">C</div>
-                        <div className="black-key note-cs">C#</div>
-                        <div className="white-key note-d">D</div>
-                        <div className="black-key note-ds">D#</div>
-                        <div className="white-key note-e">E</div>
-                        <div className="white-key note-f">F</div>
-                        <div className="black-key note-fs">F#</div>
-                        <div className="white-key note-g">G</div>
-                        <div className="black-key note-gs">G#</div>
-                        <div className="white-key note-a">A</div>
-                        <div className="black-key note-as">A#</div>
-                        <div className="white-key note-b">B</div>
-                        <div className="white-key note-c2">C2</div>
+                        {whiteKeys.map(
+                            (v, i) => <div key={i} className={`white-key note-${v.toLowerCase()} ${v === this.state.noteFrom ? 'sel' : ''}`} onClick={() => this.onClickNoteFrom(v)}>{v}</div>
+                        )}
+                        {blackKeysFlats.map(
+                            (v, i) => <div key={i} className={`black-key note-${v.toLowerCase()} ${v === this.state.noteFrom ? 'sel' : ''}`} onClick={() => this.onClickNoteFrom(v)}>{v}</div>
+                        )}
                     </div>
                 </div>
-                <div class="intervals-wrapper">
-                    {/*interval:*/}
+                <div className="intervals-wrapper">
                     <div className="intervals">
                         <div className="interval interval-1">1</div>
                         <div className="interval interval-2">2</div>
@@ -38,29 +52,24 @@ class NotePlusInterval extends Component {
                         <div className="interval interval-8">8</div>
                     </div>
                     <div className="interval-alterations">
+                        <div className="interval-alteration interval-down">&#9650;</div>
                         <div className="interval-alteration interval-dim">dim</div>
                         <div className="interval-alteration interval-min">min</div>
                         <div className="interval-alteration interval-maj">Maj</div>
                         <div className="interval-alteration interval-aug">Aug</div>
+                        <div className="interval-alteration interval-up">&#9660;</div>
                     </div>
                     {/*P5*/}
                 </div>
                 <div>
                     to:
                     <div className="piano">
-                        <div className="white-key note-c">C</div>
-                        <div className="black-key note-cs">C#</div>
-                        <div className="white-key note-d">D</div>
-                        <div className="black-key note-ds">D#</div>
-                        <div className="white-key note-e">E</div>
-                        <div className="white-key note-f">F</div>
-                        <div className="black-key note-fs">F#</div>
-                        <div className="white-key note-g">G</div>
-                        <div className="black-key note-gs">G#</div>
-                        <div className="white-key note-a">A</div>
-                        <div className="black-key note-as">A#</div>
-                        <div className="white-key note-b">B</div>
-                        <div className="white-key note-c2">C2</div>
+                        {whiteKeys.map(
+                            (v, i) => <div key={i} className={`white-key note-${v.toLowerCase()} ${v === this.state.noteTo ? 'sel' : ''}`} onClick={() => this.onClickNoteTo(v)}>{v}</div>
+                        )}
+                        {blackKeysFlats.map(
+                            (v, i) => <div key={i} className={`black-key note-${v.toLowerCase()} ${v === this.state.noteTo ? 'sel' : ''}`} onClick={() => this.onClickNoteTo(v)}>{v}</div>
+                        )}
                     </div>
                 </div>
             </div>

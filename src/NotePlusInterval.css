@@ -1,16 +1,165 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .NotePlusInterval {
+        width: 100vh;
+    }
+    .piano {
+        grid-gap: 2px;
+        grid-template-columns: repeat(2, 15vh);
+        grid-template-rows: repeat(16, 50px);
+    }
+
+    .intervals-wrapper {
+        width: 30vh;
+    }
+
+    .intervals {
+        grid-gap: 2px;
+        grid-template-columns: 15vh;
+        /*grid-template-columns: 40%;*/
+        grid-template-rows: repeat(8, 60px);
+    }
+
+    .interval-alterations {
+        grid-gap: 10px;
+        grid-template-columns: 15vh;
+        grid-template-rows: repeat(8, 60px);
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .NotePlusInterval {
+        width: 100vh;
+    }
+    .piano {
+        grid-gap: 2px;
+        grid-template-columns: repeat(2, 50px);
+        grid-template-rows: repeat(16, 20px);
+    }
+
+    .intervals-wrapper {
+        width: 30vh;
+    }
+
+    .intervals {
+        grid-gap: 2px;
+        /*grid-template-columns: 50px;*/
+        grid-template-columns: 40%;
+        grid-template-rows: repeat(8, 30px);
+    }
+
+    .interval-alterations {
+        grid-gap: 10px;
+        grid-template-columns: 40%;
+        grid-template-rows: repeat(8, 30px);
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .NotePlusInterval {
+        width: 600px;
+    }
+
+    .piano {
+        grid-gap: 2px;
+        grid-template-columns: repeat(2, 80px);
+        grid-template-rows: repeat(16, 40px);
+    }
+
+    .intervals-wrapper {
+        width: 200px;
+    }
+    .intervals {
+        grid-gap: 2px;
+        grid-template-columns: 90px;
+        grid-template-rows: repeat(8, 30px);
+    }
+
+    .interval-alterations {
+        grid-gap: 10px;
+        grid-template-columns: 90px;
+        grid-template-rows: repeat(8, 30px);
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .NotePlusInterval {
+        width: 800px;
+    }
+    .piano {
+        grid-gap: 2px;
+        grid-template-columns: repeat(2, 50px);
+        grid-template-rows: repeat(16, 20px);
+    }
+
+    .intervals-wrapper {
+        width: 200px;
+    }
+
+    .intervals {
+        grid-gap: 2px;
+        /*grid-template-columns: 50px;*/
+        grid-template-columns: 40%;
+        grid-template-rows: repeat(8, 30px);
+    }
+
+    .interval-alterations {
+        grid-gap: 10px;
+        grid-template-columns: 40%;
+        grid-template-rows: repeat(8, 30px);
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .NotePlusInterval {
+        width: 800px;
+        font-size: 20pt;
+    }
+    .piano {
+        grid-gap: 2px;
+        grid-template-columns: repeat(2, 80px);
+        grid-template-rows: repeat(16, 40px);
+    }
+    .intervals-wrapper {
+        width: 200px;
+    }
+
+    .intervals {
+        grid-gap: 2px;
+        /*grid-template-columns: 50px;*/
+        grid-template-columns: 90px;
+        grid-template-rows: repeat(8, 60px);
+    }
+
+    .interval-alterations {
+        grid-gap: 10px;
+        grid-template-columns: 90px;
+        grid-template-rows: repeat(6, 60px);
+    }
+}
+
+
 .NotePlusInterval {
-    width: 400px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /*justify-content: center;*/
+    align-items: flex-start;
 }
+
 
 .piano {
     display: grid;
-    grid-gap: 2px;
-    grid-template-columns: repeat(2, 50px);
-    grid-template-rows: repeat(16, 20px);
-    /*justify-items: center;*/
+    /*grid-gap: 2px;*/
+    /*grid-template-columns: repeat(2, 50px);*/
+    /*grid-template-rows: repeat(16, 20px);*/
 }
 
 .white-key, .black-key {
@@ -35,7 +184,7 @@
     grid-row: 1 / span 2;
     /*place-self: center;*/
 }
-.note-cs {
+.note-db, .note-cs {
     grid-column: 2;
     grid-row: 2 / span 2;
 }
@@ -43,7 +192,7 @@
     grid-column: 1;
     grid-row: 3 / span 2;
 }
-.note-ds {
+.note-eb, .note-ds {
     grid-column: 2;
     grid-row: 4 / span 2;
 }
@@ -55,7 +204,7 @@
     grid-column: 1;
     grid-row: 7 / span 2;
 }
-.note-fs {
+.note-gb, .note-fs {
     grid-column: 2;
     grid-row: 8 / span 2;
 }
@@ -63,7 +212,7 @@
     grid-column: 1;
     grid-row: 9 / span 2;
 }
-.note-gs {
+.note-ab, .note-gs {
     grid-column: 2;
     grid-row: 10 / span 2;
 }
@@ -71,7 +220,7 @@
     grid-column: 1;
     grid-row: 11 / span 2;
 }
-.note-as {
+.note-bb, .note-as {
     grid-column: 2;
     grid-row: 12 / span 2;
 }
@@ -86,11 +235,11 @@
 
 
 .intervals-wrapper {
-    width: 120px;
-    align-self: center;
+    /*width: 120px;*/
+    /*align-self: center;*/
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /*align-items: center;*/
 
 }
 
@@ -98,8 +247,8 @@
     display: grid;
     grid-gap: 2px;
     /*grid-column-gap: 10px;*/
-    grid-template-columns: 50px;
-    grid-template-rows: repeat(8, 30px);
+    /*grid-template-columns: 50px;*/
+    /*grid-template-rows: repeat(8, 30px);*/
     /*justify-items: center;*/
 }
 
@@ -178,8 +327,8 @@
     display: grid;
     grid-gap: 10px;
     /*grid-column-gap: 10px;*/
-    grid-template-columns: 50px;
-    grid-template-rows: repeat(8, 30px);
+    /*grid-template-columns: 50px;*/
+    /*grid-template-rows: repeat(8, 30px);*/
 }
 
 .interval-alteration {
@@ -191,23 +340,38 @@
     align-items: center;
 }
 
+.interval-down {
+    grid-column: 1;
+    grid-row: 1;
+}
+
 .interval-dim {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
 }
 
 .interval-min {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 3;
 }
 
 .interval-maj {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 4;
 }
 
 .interval-aug {
     grid-column: 1;
+    grid-row: 5;
+}
+
+.interval-up {
+    grid-column: 1;
     grid-row: 6;
 }
 
+
+.sel {
+    background-color: black;
+    color: white;
+}
