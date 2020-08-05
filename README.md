@@ -1,5 +1,7 @@
 # Music Calculators
 
+## Intervals
+
 - semitones between two notes
 - interval between two notes
 - semitones in interval
