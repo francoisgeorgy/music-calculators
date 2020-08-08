@@ -22,6 +22,14 @@
     font-size: large;
 }
 
+.calculator {
+    width: 800px;
+}
+
+.active {
+    background-color: #f3ffc5;
+}
+
 .c {
     margin: 20px 0;
     display: flex;
@@ -39,6 +47,7 @@
     display: block;
     border: none;
     border-bottom: 1px solid #aaa;
+    background: transparent;
     font-size: 3rem;
     width: 6rem;
     outline: none;
@@ -60,16 +69,16 @@
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #eee;
+    color: #fff;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-    color: #eee;
+    color: #fff;
 }
 :-ms-input-placeholder { /* IE 10+ */
-    color: #eee;
+    color: #DDD;
 }
 :-moz-placeholder { /* Firefox 18- */
-    color: #eee;
+    color: #DDD;
 }
 
 #help {

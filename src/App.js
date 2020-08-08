@@ -8,6 +8,7 @@ import NotePlusInterval from "./NotePlusInterval";
 class App extends Component {
 
     state = {
+        activeCalculator: 1,
         noteFrom: '',
         noteTo: '',
         semitones: '',
@@ -77,6 +78,8 @@ class App extends Component {
             }
         }
 
+        if (n === 0) return;    // interval "0" does not exist
+
         let alt;
         if ([1, 4, 5, 8].includes(n)) { // TODO: use modulo to check for all values
             alt = 0;
@@ -85,7 +88,7 @@ class App extends Component {
         }
 
         let i = Interval.build({ num: n, alt: alt });
-        console.log('i', i);
+        // console.log('i', i);
 
         this.setInterval(i);
 
@@ -238,6 +241,20 @@ class App extends Component {
             return;
         }
 
+        // PageDown
+        if (event.keyCode === 33) {
+            let i = (this.state.activeCalculator - 1) % 3;
+            if (i < 0) i = 2;
+            this.setState({activeCalculator: i})
+            return;
+        }
+
+        // PageDown
+        if (event.keyCode === 34) {
+            this.setState({activeCalculator: (this.state.activeCalculator + 1) % 3})
+            return;
+        }
+
         if (event.target.tagName.toLowerCase() === 'input') {
             console.log("ignore keyboard event on input tag");
             return;
@@ -262,7 +279,7 @@ class App extends Component {
         }
 
         // A..G 97..103
-        if (    event.shiftKey && ((event.keyCode >= 65) && (event.keyCode <= 71))) {
+        if (event.shiftKey && ((event.keyCode >= 65) && (event.keyCode <= 71))) {
             this.setToNote(event.key);
         }
 
@@ -384,7 +401,8 @@ class App extends Component {
                     {/*<img src={logo} className="App-logo" alt="logo"/>*/}
                     <h1 className="App-title">Music Calculators</h1>
                 </header>
-                <div>
+
+                <div className={this.state.activeCalculator === 0 ? 'calculator active' : 'calculator'}>
                     <div className={"c"}>
                         <div className={"i"}>
                             <input type="text"  tabIndex={1} onChange={this.onNoteFromChange} value={this.state.noteFrom} placeholder={"C"} />
@@ -399,13 +417,13 @@ class App extends Component {
                         </div>
 
                         <div className={"i"}>
-                            <input type="text" tabIndex={2} onChange={this.onSemitonesChange} value={this.state.semitones} placeholder={"4"} />
-                            <label>semitones</label>
+                            <input type="text" tabIndex={3} onChange={this.onIntervalChange} value={this.state.interval} placeholder={"3m"} />
+                            <label>interval</label>
                         </div>
 
                         <div className={"i"}>
-                            <input type="text" tabIndex={3} onChange={this.onIntervalChange} value={this.state.interval} placeholder={"3m"} />
-                            <label>interval</label>
+                            <input type="text" tabIndex={2} onChange={this.onSemitonesChange} value={this.state.semitones} placeholder={"4"} />
+                            <label>semitones</label>
                         </div>
 
                         <div className={"op"}>
@@ -431,7 +449,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                <div>
+                <div className={this.state.activeCalculator === 1 ? 'calculator active' : 'calculator'}>
                     <div className={"c"}>
                         <div className={"i"}>
                             <input type="text" placeholder={"3M"} />
@@ -461,7 +479,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                <div>
+                <div className={this.state.activeCalculator === 2 ? 'calculator active' : 'calculator'}>
                     <div className={"c"}>
                         <div className={"i"}>
                             <input type="text" placeholder={"3M"} />
@@ -494,7 +512,7 @@ class App extends Component {
                 <div id="help">
                     <div>
                         <div className={"help"}><span>a..g</span> : note from</div>
-                        <div className={"help"}><span>Shift A..G</span> : note to</div>
+                        <div className={"help"}><span>A..G</span> : note to</div>
                         <div className={"help"}><span>0..9</span> : interval (major or perfect)</div>
                         <div className={"help"}><span>Shift 0..9</span> : minor or diminished interval</div>
                         <div className={"help"}><span>Alt 0..9</span> : augmented interval</div>
@@ -502,10 +520,12 @@ class App extends Component {
                     </div>
                 </div>
 
+{/*
                 <div>
                     <h3>experimental:</h3>
                     <NotePlusInterval/>
                 </div>
+*/}
 
             </div>
         );

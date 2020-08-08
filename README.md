@@ -61,6 +61,12 @@ third click -> select note 1
 
 ### TODO:
 
+- Mobile version
+    - no keyboard needed, only touch
+    - piano keyboard
+    - guitar fretboard (4-5 frets)
+    
+
 - Add any number of intervals
     - add operands and operators
 - Save last state in local storage (or cookie?)
@@ -76,3 +82,7 @@ shit 0..9 : minor or diminished interval
 alt 0..9 : augmented interval    
 t T : tritone
 
+# resources:
+
+- http://www.sengpielaudio.com/calculator-bpmtempotime.htm
+- http://www.amnesta.net/edge_delay/
